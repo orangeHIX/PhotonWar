@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.badlogic.androidgames.framework.model.DynamicGameObject;
+import com.badlogic.gdx.math.Circle;
 import com.creaty.game.framework.SmartLog;
 import com.creaty.photonwar.inferface.CombatUnit;
 import com.creaty.photonwar.inferface.EntityManager;
@@ -240,7 +242,7 @@ public class ShipGroup extends DynamicGameObject implements CombatUnit {
 		case RECYCLEING:
 			break;
 		default:
-			Log.d(tag, "unknown state");
+			Gdx.app.log(tag, "unknown state");
 		}
 	}
 

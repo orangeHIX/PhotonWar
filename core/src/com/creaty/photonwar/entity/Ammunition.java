@@ -2,11 +2,9 @@ package com.creaty.photonwar.entity;
 
 import java.util.Random;
 
-import android.util.Log;
-
-import com.badlogic.androidgames.framework.math.Circle;
-import com.badlogic.androidgames.framework.math.Vector2;
 import com.badlogic.androidgames.framework.model.DynamicGameObject;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Vector2;
 
 public class Ammunition extends DynamicGameObject{
 
@@ -32,7 +30,7 @@ public class Ammunition extends DynamicGameObject{
 	}
 	protected void updateMove(float deltaTime) {
 		position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-		((Circle)bounds).center.set(position);
+		((Circle)bounds).setPosition(position);
 		if (Math.abs(position.x - destination.x) <= 0.1
 				&& Math.abs(position.y - destination.y) <= 0.1) {
 			position.x = destination.x;

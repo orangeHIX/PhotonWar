@@ -58,41 +58,42 @@ public class World implements EntityManager {
 		shipGroups = new ArrayList<ShipGroup>();
 		strongHolds = new ArrayList<StrongHold>();
 		battleFieldList = new ArrayList<BattleField>();
-		shipPool = new Pool<Ship>(new PoolObjectFactory<Ship>() {
+		shipPool = new Pool<Ship>(100, shipPoolSize){
 
 			@Override
-			public Ship createObject() {
+			protected Ship newObject() {
 				// TODO Auto-generated method stub
-				return new Ship();
+				return null;
 			}
-		}, shipPoolSize);
-		shipGroupPool = new Pool<ShipGroup>(new PoolObjectFactory<ShipGroup>() {
+
+			};
+		shipGroupPool = new Pool<ShipGroup>(10, shipGroupSize){
 
 			@Override
-			public ShipGroup createObject() {
+			protected ShipGroup newObject() {
 				// TODO Auto-generated method stub
 				return new ShipGroup();
 			}
+			
+		};
+		ammunitionPool = new Pool<Ammunition>(100, ammunitionSize){
 
-		}, shipGroupSize);
-		ammunitionPool = new Pool<Ammunition>(
-				new PoolObjectFactory<Ammunition>() {
+			@Override
+			protected Ammunition newObject() {
+				// TODO Auto-generated method stub
+				return new Ammunition(0, 0, 0.2f);
+			}
+			
+		};
+		battleFieldPool = new Pool<BattleField>( 10, battleFieldSize){
 
-					@Override
-					public Ammunition createObject() {
-						// TODO Auto-generated method stub
-						return new Ammunition(0, 0, 0.2f);
-					}
-				}, ammunitionSize);
-		battleFieldPool = new Pool<BattleField>(
-				new PoolObjectFactory<BattleField>() {
-
-					@Override
-					public BattleField createObject() {
-						// TODO Auto-generated method stub
-						return new BattleField();
-					}
-				}, battleFieldSize);
+			@Override
+			protected BattleField newObject(){
+				// TODO Auto-generated method stub
+				return new BattleField();
+			}
+			
+		};
 
 		shipGroupToFree = new ArrayList<ShipGroup>();
 		battleFieldToFree = new ArrayList<BattleField>();
@@ -251,7 +252,7 @@ public class World implements EntityManager {
 	@Override
 	public ShipGroup GetGroupInstance(StrongHold requset) {
 		// TODO Auto-generated method stub
-		ShipGroup shipGroup = shipGroupPool.newObject();
+		ShipGroup shipGroup = shipGroupPool.obtain();
 		shipGroup.entityManager = this;
 		// ships.add(ship);
 		grid.insertDynamicObject(shipGroup);
@@ -274,7 +275,7 @@ public class World implements EntityManager {
 	@Override
 	public Ship GetShipInstance() {
 		// TODO Auto-generated method stub
-		Ship shipItem = shipPool.newObject();
+		Ship shipItem = shipPool.obtain();
 		grid.insertDynamicObject(shipItem);
 		return shipItem;
 	}
@@ -304,7 +305,7 @@ public class World implements EntityManager {
 	@Override
 	public BattleField GetBattleFieldInstance() {
 		// TODO Auto-generated method stub
-		BattleField bf = battleFieldPool.newObject();
+		BattleField bf = battleFieldPool.obtain();
 		battleFieldList.add(bf);
 		return bf;
 	}

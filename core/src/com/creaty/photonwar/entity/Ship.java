@@ -157,12 +157,12 @@ public class Ship extends DynamicGameObject {
 		Circle circle = ((Circle) groupItem.bounds);
 		float drawRadius = groupItem.drawRadius;
 		float x, y;
-		x = circle.center.x - drawRadius + random.nextFloat() * drawRadius * 2;
+		x = circle.x - drawRadius + random.nextFloat() * drawRadius * 2;
 		float upperY = MathUtils.sqrt(drawRadius * drawRadius
-				- (x - circle.center.x) * (x - circle.center.x))
-				+ circle.center.y;
-		float bottomY = (float) (circle.center.y - Math.sqrt(drawRadius
-				* drawRadius - (x - circle.center.x) * (x - circle.center.x)));
+				- (x - circle.x) * (x - circle.x))
+				+ circle.y;
+		float bottomY = (float) (circle.y - Math.sqrt(drawRadius
+				* drawRadius - (x - circle.x) * (x - circle.x)));
 		y = bottomY + (upperY - bottomY) * random.nextFloat();
 
 		move(x, y);
@@ -241,17 +241,17 @@ public class Ship extends DynamicGameObject {
 	/**航行更新，需要外部检测是否到达目的地。飞船将一直按照其设定的速度航行*/
 	protected void updateMove(float deltaTime) {
 		position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-		((Circle) bounds).center.set(position);
+		((Circle) bounds).setPosition(position);
 
 	}
 
 	protected void updateCircle(float deltaTime) {
 		if (! isClockwise) {
 			position.rotate(angularVelocity * deltaTime, rotationCenter);
-			((Circle) bounds).center.set(position);
+			((Circle) bounds).setPosition(position);
 		} else {
 			position.rotate(-angularVelocity * deltaTime, rotationCenter);
-			((Circle) bounds).center.set(position);
+			((Circle) bounds).setPosition(position);
 		}
 	}
 
