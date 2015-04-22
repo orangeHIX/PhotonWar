@@ -3,7 +3,7 @@ package com.badlogic.androidgames.framework.model;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
-import com.badlogic.gdx.math.Vector2;
+import com.creaty.math.Vector2;
 
 /** 具有方形边界的游戏实体 */
 public class GameObject {

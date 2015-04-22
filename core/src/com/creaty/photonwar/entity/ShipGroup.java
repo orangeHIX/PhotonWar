@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Random;
 
 import com.badlogic.androidgames.framework.model.DynamicGameObject;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.MathUtils;
 import com.creaty.game.framework.SmartLog;
+import com.creaty.math.Vector2;
 import com.creaty.photonwar.inferface.CombatUnit;
 import com.creaty.photonwar.inferface.EntityManager;
 
@@ -151,7 +154,7 @@ public class ShipGroup extends DynamicGameObject implements CombatUnit {
 		this.position.x = x;
 		this.position.y = y;
 		this.drawRadius = drawRadius;
-		((Circle) this.bounds).center.set(position);
+		((Circle) this.bounds).setPosition(position);
 		((Circle) this.bounds).radius = radius;
 	}
 
@@ -267,7 +270,7 @@ public class ShipGroup extends DynamicGameObject implements CombatUnit {
 	protected void updateVoyaging(float deltatime) {
 		updateShips(deltatime);
 		position.add(velocity.x * deltatime, velocity.y * deltatime);
-		((Circle) bounds).center.set(position);
+		((Circle) bounds).setPosition(position);
 		//log.logFloatPS("x", position.x);
 		// log.logFloatPS("y", position.y);
 	}
@@ -399,12 +402,12 @@ public class ShipGroup extends DynamicGameObject implements CombatUnit {
 				ammuntion.position.y = currentShip.position.y;
 				float destinationX = x - radius + random.nextFloat() * radius
 						* 2;
-				float upperY = FloatMath.sqrt(radius * radius
+				float upperY = (float) (Math.sqrt(radius * radius
 						- (destinationX - x) * (destinationX - x))
-						+ y;
-				float bottomY = y
-						- FloatMath.sqrt(radius * radius - (destinationX - x)
-								* (destinationX - x));
+						+ y);
+				float bottomY = (float) (y
+						- Math.sqrt(radius * radius - (destinationX - x)
+								* (destinationX - x)));
 				float destinationY = bottomY + (upperY - bottomY)
 						* random.nextFloat();
 				ammuntion.MoveTo(new Vector2(destinationX, destinationY));
@@ -443,7 +446,7 @@ public class ShipGroup extends DynamicGameObject implements CombatUnit {
 		// TODO Auto-generated method stub
 		int size = shipList.size();
 		if (size > 0) {
-			int destory = (int) FloatMath.floor(damage / shipList.get(0).hp);
+			int destory = MathUtils.floor(damage / shipList.get(0).hp);
 			if (size - destory < 0)
 				destory = size;
 			for (int i = size - 1; i >= size - destory; i--) {

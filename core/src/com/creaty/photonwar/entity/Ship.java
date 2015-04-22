@@ -6,7 +6,7 @@ import com.badlogic.androidgames.framework.model.DynamicGameObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
+import com.creaty.math.Vector2;
 
 public class Ship extends DynamicGameObject {
 	public static final String tag = "Ship";
@@ -57,7 +57,7 @@ public class Ship extends DynamicGameObject {
 	public float basicSpeed;
 
 	/** 航行目的地(坐标位置) */
-	public com.badlogic.gdx.math.Vector2 spaceDestination;
+	public Vector2 spaceDestination;
 	/** 航行目的地（据点目标） */
 	public StrongHold destination;
 	public Random random = new Random();
@@ -158,9 +158,9 @@ public class Ship extends DynamicGameObject {
 		float drawRadius = groupItem.drawRadius;
 		float x, y;
 		x = circle.x - drawRadius + random.nextFloat() * drawRadius * 2;
-		float upperY = MathUtils.sqrt(drawRadius * drawRadius
+		float upperY = (float) (Math.sqrt(drawRadius * drawRadius
 				- (x - circle.x) * (x - circle.x))
-				+ circle.y;
+				+ circle.y);
 		float bottomY = (float) (circle.y - Math.sqrt(drawRadius
 				* drawRadius - (x - circle.x) * (x - circle.x)));
 		y = bottomY + (upperY - bottomY) * random.nextFloat();
@@ -229,7 +229,7 @@ public class Ship extends DynamicGameObject {
 	/**短途航行更新，每次调用都会检查是否到达目的地。如果到达目的地，飞船自动转入STOP状态*/
 	protected void UpdateMoveShort(float deltaTime) {
 		position.add(velocity.x * deltaTime, velocity.y * deltaTime);
-		((Circle) bounds).center.set(position);
+		((Circle) bounds).setPosition(position);
 		if (Math.abs(position.x - spaceDestination.x) <= 0.1
 				&& Math.abs(position.y - spaceDestination.y) <= 0.1) {
 			position.x = spaceDestination.x;

@@ -3,17 +3,12 @@ package com.creaty.photonwar;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
-
-import com.badlogic.androidgames.framework.Input.TouchEvent;
-import com.badlogic.androidgames.framework.math.Circle;
-import com.badlogic.androidgames.framework.math.OverlapTester;
-import com.badlogic.androidgames.framework.math.Vector2;
 import com.creaty.game.framework.State;
 import com.creaty.game.framework.State.StateUpdater;
 import com.creaty.game.framework.StateMachine;
 import com.creaty.game.framework.StateMachine2;
 import com.creaty.game.framework.StateMachine2.StateTransitionTester;
+import com.creaty.math.Vector2;
 import com.creaty.photonwar.entity.Race;
 import com.creaty.photonwar.entity.StrongHold;
 import com.creaty.photonwar.entity.World;

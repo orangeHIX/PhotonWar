@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.badlogic.androidgames.framework.model.DynamicGameObject;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
+import com.creaty.math.Vector2;
 
 public class Ammunition extends DynamicGameObject{
 

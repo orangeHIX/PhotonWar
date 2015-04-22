@@ -1,6 +1,6 @@
 package com.badlogic.androidgames.framework.model;
 
-import com.badlogic.gdx.math.Vector2;
+import com.creaty.math.Vector2;
 
 public class DynamicGameObject extends GameObject {
 	/** 速度向量，时间段*速度向量=该物体在游戏世界中前进的距离 */

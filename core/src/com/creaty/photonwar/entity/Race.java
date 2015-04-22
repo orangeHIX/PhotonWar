@@ -3,7 +3,8 @@ package com.creaty.photonwar.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.badlogic.gdx.math.Vector2;
+import com.creaty.math.Vector2;
+
 
 /*势力*/
 public class Race {
@@ -102,7 +103,7 @@ public class Race {
 	 * @param 改装后的飞船
 	 */
 	public Ship degsinNewShip(Ship ship) {
-		ship.resetShip(0, emp, shipBlueprint.shipLevel,
+		ship.resetShip(0f, emp, shipBlueprint.shipLevel,
 				shipBlueprint.detectRadius, shipBlueprint.hp,
 				shipBlueprint.atk, shipBlueprint.def, this,
 				shipBlueprint.basicSpeed, emp, null, null);

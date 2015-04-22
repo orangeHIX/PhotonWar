@@ -1,10 +1,5 @@
 package com.creaty.photonwar.entity;
 
-import java.util.ArrayList;
-
-import android.util.Log;
-
-import com.creaty.game.framework.SmartLog;
 import com.creaty.photonwar.inferface.CombatUnit;
 
 public class BattleField {

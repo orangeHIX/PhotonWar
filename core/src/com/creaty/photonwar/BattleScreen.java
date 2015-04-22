@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.androidgames.framework.model.FPSCounter;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.creaty.math.Vector2;
 import com.creaty.photonwar.entity.World;
 import com.creaty.photonwar.entity.World.WorldListener;
 import com.creaty.photonwar.view.WorldRenderer;
 
-public class BattleScreen extends Screen {
+public class BattleScreen implements ApplicationListener {
 
 	public static final String tag = "BattleScreen";
 	Game game;
@@ -29,7 +31,7 @@ public class BattleScreen extends Screen {
 		super(game);
 		// TODO Auto-generated constructor stub
 		this.game = (GLGame) game;
-		batcher = new SpriteBatcher(this.game.getGLGraphics(), 1000);
+		batcher = new SpriteBatch(1000);
 		noTextureBatcher = new NoTextureBatcher(this.game.getGLGraphics(),10000);
 		fanShapeDrawer = new FanShapeDrawer(this.game.getGLGraphics(), LEVEL.LEVEL_4, 10);
 		worldListener = new WorldListener() {

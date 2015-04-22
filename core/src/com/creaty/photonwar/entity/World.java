@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.utils.Pool;
 import com.creaty.game.framework.SmartLog;
+import com.creaty.math.OverlapTester;
+import com.creaty.photonwar.SpatialHashGridForWar;
 import com.creaty.photonwar.entity.BattleField.BATTLE_FEILD_STATE;
 import com.creaty.photonwar.entity.Race.ShipBlueprint;
 import com.creaty.photonwar.entity.ShipGroup.GROUP_STATE;
@@ -290,7 +293,7 @@ public class World implements EntityManager {
 	@Override
 	public Ammunition GetAmmunition() {
 		// TODO Auto-generated method stub
-		Ammunition ammunitionItem = ammunitionPool.newObject();
+		Ammunition ammunitionItem = ammunitionPool.obtain();
 		ammunitions.add(ammunitionItem);
 		return ammunitionItem;
 	}
